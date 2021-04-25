@@ -1,0 +1,72 @@
+<?php
+
+namespace DigiComp\OpenproviderApi\Normalizer;
+
+use Jane\JsonSchemaRuntime\Reference;
+use DigiComp\OpenproviderApi\Runtime\Normalizer\CheckArray;
+use Symfony\Component\Serializer\Exception\InvalidArgumentException;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\DenormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerAwareTrait;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
+class AuthcodeGetAuthCodeResponseDataNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+{
+    use DenormalizerAwareTrait;
+    use NormalizerAwareTrait;
+    use CheckArray;
+
+    public function supportsDenormalization($data, $type, $format = null)
+    {
+        return $type === 'DigiComp\\OpenproviderApi\\Model\\AuthcodeGetAuthCodeResponseData';
+    }
+    public function supportsNormalization($data, $format = null)
+    {
+        return is_object($data) && get_class($data) === 'DigiComp\\OpenproviderApi\\Model\\AuthcodeGetAuthCodeResponseData';
+    }
+    public function denormalize($data, $class, $format = null, array $context = array())
+    {
+        if (isset($data['$ref'])) {
+            return new Reference($data['$ref'], $context['document-origin']);
+        }
+        if (isset($data['$recursiveRef'])) {
+            return new Reference($data['$recursiveRef'], $context['document-origin']);
+        }
+        $object = new \DigiComp\OpenproviderApi\Model\AuthcodeGetAuthCodeResponseData();
+        if (null === $data || false === \is_array($data)) {
+            return $object;
+        }
+        if (\array_key_exists('auth_code', $data) && $data['auth_code'] !== null) {
+            $object->setAuthCode($data['auth_code']);
+        } elseif (\array_key_exists('auth_code', $data) && $data['auth_code'] === null) {
+            $object->setAuthCode(null);
+        }
+        if (\array_key_exists('success', $data) && $data['success'] !== null) {
+            $object->setSuccess($data['success']);
+        } elseif (\array_key_exists('success', $data) && $data['success'] === null) {
+            $object->setSuccess(null);
+        }
+        if (\array_key_exists('type', $data) && $data['type'] !== null) {
+            $object->setType($data['type']);
+        } elseif (\array_key_exists('type', $data) && $data['type'] === null) {
+            $object->setType(null);
+        }
+        return $object;
+    }
+    public function normalize($object, $format = null, array $context = array())
+    {
+        $data = array();
+        if (null !== $object->getAuthCode()) {
+            $data['auth_code'] = $object->getAuthCode();
+        }
+        if (null !== $object->getSuccess()) {
+            $data['success'] = $object->getSuccess();
+        }
+        if (null !== $object->getType()) {
+            $data['type'] = $object->getType();
+        }
+        return $data;
+    }
+}

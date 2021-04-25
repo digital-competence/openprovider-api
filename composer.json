@@ -1,0 +1,18 @@
+{
+    "name": "digicomp/openprovider-api",
+    "type": "library",
+    "description": "Openprovider API built by JanePHP",
+    "require": {
+        "psr/http-client": "^1.0.1",
+        "jane-php/open-api-runtime": "^6.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DigiComp\\OpenproviderApi\\": ["src", "generated"]
+        },
+        "exclude-from-classmap": [
+            "generated/Runtime/Client/EndpointTrait.php"
+        ]
+    }
+}
