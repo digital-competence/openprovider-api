@@ -4,7 +4,7 @@
     "description": "Openprovider API built by JanePHP",
     "require": {
         "psr/http-client": "^1.0.1",
-        "jane-php/open-api-runtime": "^6.3"
+        "jane-php/open-api-runtime": "7.3"
     },
     "license": "MIT",
     "autoload": {
